@@ -115,7 +115,6 @@
 
 
                                                                         <!-- Modal untuk panggil form anggota table -->
-
                                                                         <div class="form-group" style="width:100%;margin-bottom:20px">
                                                                             <label>Nama Lengkap</label>
                                                                             <input type="text" style="width:100%" name="nama" required="required" class="form-control" placeholder="Masukkan Nama Lengkap .." value="<?php echo $d['anggota_nama'] ?>">
@@ -162,17 +161,17 @@
 
                                                                         <div class="form-group" style="width:100%;margin-bottom:20px">
                                                                             <label>Foto KTP</label>
-                                                                            <input type="file" style="width:100%" name="foto_ktp" required="required" class="form-control" placeholder="Masukkan Foto KTP .." value="<?php echo $d['anggota_ktp'] ?>" accept="image/*">
+                                                                            <input type="file" style="width:100%" name="foto_ktp"  class="form-control" placeholder="Masukkan Foto KTP .." value="" accept="image/*">
                                                                         </div>
 
                                                                         <div class="form-group" style="width:100%;margin-bottom:20px">
                                                                             <label>Foto NPWP Anggota</label>
-                                                                            <input type="file" style="width:100%" name="foto_npwp" required="required" class="form-control" placeholder="Masukkan Foto NPWP .." value="<?php echo $d['anggota_npwp'] ?>" accept=".jpg">
+                                                                            <input type="file" style="width:100%" name="foto_npwp"  class="form-control" placeholder="Masukkan Foto NPWP .." value="" accept=".jpg">
                                                                         </div>
 
                                                                         <div class="form-group" style="width:100%;margin-bottom:20px">
                                                                             <label>Upload bukti pembayaran</label>
-                                                                            <input type="file" style="width:100%" name="bukti_pembayaran" required="required" class="form-control" placeholder="Masukkan Bukti Pembayaran .." value="<?php echo $d['anggota_bukti'] ?>" accept="image/*">
+                                                                            <input type="file" style="width:100%" name="bukti_pembayaran" class="form-control" placeholder="Masukkan Bukti Pembayaran .." value="" accept="image/*">
                                                                         </div>
 
 

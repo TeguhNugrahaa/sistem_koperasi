@@ -30,14 +30,6 @@ $filefoto_npwp = $_FILES['foto_npwp']['name'];
 $filebukti_pembayaran = $_FILES['bukti_pembayaran']['name'];
 
 
-// $filefoto_ktp = !empty($_FILES['foto_ktp']['name']) ? $unixtime . "_" . $_FILES['foto_ktp']['name'] : 'n/a';
-// $filefoto_npwp = !empty($_FILES['foto_npwp']['name']) ? $unixtime . "_" . $_FILES['foto_npwp']['name'] : 'n/a';
-// $filebukti_pembayaran = !empty($_FILES['bukti_pembayaran']['name']) ? $unixtime . "_" . $_FILES['bukti_pembayaran']['name'] : 'n/a';
-
-
-// 
-// okeupload($_FILES['bukti_pembayaran'], '../gambar/user/upload_bukti/', $unixtime);
-
 if($filefoto_ktp=="" && $filefoto_npwp=="" && $filebukti_pembayaran == ""){
         $cekquery = mysqli_query($koneksi, "update anggota set anggota_nama='$nama', anggota_alamat='$alamat', anggota_tempat='$tempat', anggota_tanggal='$tanggal', anggota_handphone='$handphone', anggota_email='$email', anggota_pekerjaan='$pekerjaan', anggota_tanggungan='$tanggungan' where anggota_id='$id'");
 
@@ -138,7 +130,7 @@ function okeupload($filename, $target_folder, $unixtime)
     $namaselected_file = $unixtime . '_' . $selected_file;
 
     if (empty($selected_file)) {
-        // die("No File Selected " . $filename['name']);
+        die("No File Selected " . $filename['name']);
     } else {
 
         $ukuran = $filename['size'];
@@ -150,43 +142,9 @@ function okeupload($filename, $target_folder, $unixtime)
             //ukuran di bawah 10 MB
             if ($ukuran > 10000000) echo "File maks. 10MB";
             else {
-                
-
-
                 //validasi oke, uploads tmp_name
                 move_uploaded_file($filename['tmp_name'], $target_folder . $namaselected_file) or die("Error Completing Request");
             }
         }
     }
 }
-
-
-
-// $filename = $_FILES['foto']['name'];
-
-// if($filename == ""){
-
-// 	mysqli_query($koneksi, "update sertifikat set nama_sertif='$judul' where id='$id'")or die(mysqli_error($koneksi));
-// 	header("location:arsip.php");
-// } else{
-
-// 	$ext = pathinfo($filename, PATHINFO_EXTENSION);
-
-// 	if(in_array($ext,$allowed) ) {
-
-// 		// hapus file lama
-// 		$lama = mysqli_query($koneksi,"select * from sertifikat where id='$id'");
-// 		$l = mysqli_fetch_assoc($lama);
-// 		$nama_file_lama = $l['gambar'];
-// 		unlink("../gambar/sertif/".$nama_file_lama);
-
-// 		// upload file baru
-// 		move_uploaded_file($_FILES['foto']['tmp_name'], '../gambar/sertif/'.$rand.'_'.$filename);
-// 		$nama_file = $rand.'_'.$filename;
-// 		mysqli_query($koneksi, "update sertifikat set nama_sertif='$judul',gambar='$nama_file'where id='$id'")or die(mysqli_error($koneksi));
-// 		header("location:arsip.php");
-
-// 	}else{
-
-// 		header("location:arsip.php");
-// 	}

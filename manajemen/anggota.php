@@ -1,5 +1,15 @@
 <?php include 'header.php'; ?>
-
+<?php session_start(); ?>
+<?php if (@$_SESSION['success']) { ?>
+    <script>
+        Swal.fire(
+            'Good job!',
+            '<?php echo $_SESSION['success']; ?>',
+            'success'
+        )
+    </script>
+<?php unset($_SESSION['success']);
+} ?>
 <div class="content-wrapper">
 
     <section class="content-header">
@@ -28,7 +38,8 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <a href="#" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> &nbsp PRINT</a>
+                        <a href="anggota-excel-backup.php?>" target="_blank" class="btn btn-sm btn-success"><i class="fa fa-file-excel-o"></i> &nbsp CETAK EXCEL</a>
+                        <a href="anggota_print.php" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> &nbsp PRINT</a>
                         <div class="table-responsive">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped" id="table-datatable">
@@ -44,7 +55,7 @@
                                             <th class="text-center">PEKERJAAN</th>
                                             <th class="text-center">JUMLAH TANGGUNGAN SAAT INI</th>
                                             <th class="text-center">FOTO KTP</th>
-                                            <th class="text-center">FOTO NPWP</th>
+                                            <th class="text-center">FOTO NPWP ANGGOTA</th>
                                             <th class="text-center">UPLOAD BUKTI PEMBAYARAN</th>
                                             <th width="10%" class="text-center">OPSI</th>
                                         </tr>
@@ -89,7 +100,7 @@
                                                     </button>
 
 
-                                                    <form action="anggota_update.php" method="post">
+                                                    <form action="anggota_update.php" method="post" enctype="multipart/form-data">
                                                         <div class="modal fade" id="edit_anggota_<?php echo $d['anggota_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
@@ -103,6 +114,8 @@
 
                                                                         <input type="hidden" name="id" value="<?php echo $d['anggota_id'] ?>">
 
+
+                                                                        <!-- Modal untuk panggil form anggota table -->
                                                                         <div class="form-group" style="width:100%;margin-bottom:20px">
                                                                             <label>Nama Lengkap</label>
                                                                             <input type="text" style="width:100%" name="nama" required="required" class="form-control" placeholder="Masukkan Nama Lengkap .." value="<?php echo $d['anggota_nama'] ?>">
@@ -149,17 +162,17 @@
 
                                                                         <div class="form-group" style="width:100%;margin-bottom:20px">
                                                                             <label>Foto KTP</label>
-                                                                            <input type="text" style="width:100%" name="foto_ktp" required="required" class="form-control" placeholder="Masukkan Foto KTP .." value="<?php echo $d['anggota_ktp'] ?>">
+                                                                            <input type="file" style="width:100%" name="foto_ktp" class="form-control" placeholder="Masukkan Foto KTP .." value="" accept="image/*">
                                                                         </div>
 
                                                                         <div class="form-group" style="width:100%;margin-bottom:20px">
-                                                                            <label>Foto NPWP</label>
-                                                                            <input type="text" style="width:100%" name="foto_npwp" required="required" class="form-control" placeholder="Masukkan Foto NPWP .." value="<?php echo $d['anggota_npwp'] ?>">
+                                                                            <label>Foto NPWP Anggota</label>
+                                                                            <input type="file" style="width:100%" name="foto_npwp" class="form-control" placeholder="Masukkan Foto NPWP .." value="" accept=".jpg">
                                                                         </div>
 
                                                                         <div class="form-group" style="width:100%;margin-bottom:20px">
                                                                             <label>Upload bukti pembayaran</label>
-                                                                            <input type="text" style="width:100%" name="bukti_pembayaran" required="required" class="form-control" placeholder="Masukkan Bukti Pembayaran .." value="<?php echo $d['anggota_bukti'] ?>">
+                                                                            <input type="file" style="width:100%" name="bukti_pembayaran" class="form-control" placeholder="Masukkan Bukti Pembayaran .." value="" accept="image/*">
                                                                         </div>
 
 
@@ -220,6 +233,8 @@
                                             </div>
                                             <div class="modal-body">
 
+                                                <!-- Modal Form Tambah Anggota -->
+
                                                 <div class="form-group">
                                                     <label>Nama Lengkap</label>
                                                     <input type="text" name="nama" required="required" class="form-control" placeholder="Masukkan Nama Lengkap ..">
@@ -268,19 +283,19 @@
 
                                                 <div class="form-group">
                                                     <label>Foto KTP</label>
-                                                    <input type="file" name="foto_ktp" required="required" class="form-control" placeholder="Masukkan Foto KTP ..">
+                                                    <input type="file" name="foto_ktp" required="required" class="form-control" placeholder="Masukkan Foto KTP .." accept=".jpg">
                                                 </div>
 
 
                                                 <div class="form-group">
                                                     <label>Foto NPWP</label>
-                                                    <input type="file" name="foto_npwp" required="required" class="form-control" placeholder="Masukkan Foto NPWP ..">
+                                                    <input type="file" name="foto_npwp" required="required" class="form-control" placeholder="Masukkan Foto NPWP .." accept="image/*">
                                                 </div>
 
 
                                                 <div class="form-group">
                                                     <label>Upload Bukti Pembayaran</label>
-                                                    <input type="file" name="bukti_pembayaran" required="required" class="form-control" placeholder="Masukkan Upload Bukti Pembayaran ..">
+                                                    <input type="file" name="bukti_pembayaran" required="required" class="form-control" placeholder="Masukkan Upload Bukti Pembayaran .." accept="image/*">
                                                 </div>
 
                                                 <div class="modal-footer">

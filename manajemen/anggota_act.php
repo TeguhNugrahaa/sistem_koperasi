@@ -4,15 +4,20 @@ include '../koneksi.php';
 $nama  = $_POST['nama'];
 $alamat  = $_POST['alamat'];
 $tempat  = $_POST['tempat'];
-$lahir  = $_POST['lahir'];
+$tanggal  = $_POST['tanggal'];
+//$lahir  = print_r($_POST['tanggal']);
 $handphone  = $_POST['handphone'];
 $email  = $_POST['email'];
 $pekerjaan  = $_POST['pekerjaan'];
 $tanggungan  = $_POST['tanggungan'];
+// dikurungkan untuk foto_ktp, npwp, sma bukti pembayarannya
 //$foto_ktp  = $_POST['foto_ktp'];
 //$foto_npwp  = $_POST['foto_npwp'];
 //$bukti_pembayaran = $_POST['bukti_pembayaran'];
 
+// ini untuk check postnya
+//print_r($_POST);
+//die;
 $rand = rand(1, 10);
 $allowed =  array('gif', 'png', 'jpg', 'jpeg');
 

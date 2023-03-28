@@ -38,6 +38,7 @@
                         </div>
                     </div>
                     <div class="box-body">
+                        <a href="anggota-excel-backup.php?>" target="_blank" class="btn btn-sm btn-success"><i class="fa fa-file-excel-o"></i> &nbsp CETAK EXCEL</a>
                         <a href="anggota_print.php" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> &nbsp PRINT</a>
                         <div class="table-responsive">
                             <div class="table-responsive">
@@ -161,12 +162,12 @@
 
                                                                         <div class="form-group" style="width:100%;margin-bottom:20px">
                                                                             <label>Foto KTP</label>
-                                                                            <input type="file" style="width:100%" name="foto_ktp"  class="form-control" placeholder="Masukkan Foto KTP .." value="" accept="image/*">
+                                                                            <input type="file" style="width:100%" name="foto_ktp" class="form-control" placeholder="Masukkan Foto KTP .." value="" accept="image/*">
                                                                         </div>
 
                                                                         <div class="form-group" style="width:100%;margin-bottom:20px">
                                                                             <label>Foto NPWP Anggota</label>
-                                                                            <input type="file" style="width:100%" name="foto_npwp"  class="form-control" placeholder="Masukkan Foto NPWP .." value="" accept=".jpg">
+                                                                            <input type="file" style="width:100%" name="foto_npwp" class="form-control" placeholder="Masukkan Foto NPWP .." value="" accept=".jpg">
                                                                         </div>
 
                                                                         <div class="form-group" style="width:100%;margin-bottom:20px">

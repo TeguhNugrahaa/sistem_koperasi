@@ -17,9 +17,9 @@ if (isset($_POST['addregis'])) {
 
     mysqli_query($koneksi, "INSERT INTO user (user_nama, user_username, user_password, user_foto, user_level) VALUES ('$nama', '$username', '$password', '$foto', '$level')");
 
-    //header("location:http://localhost/project_keuangan/index.php?alert=daftar");
+    header("location:http://localhost/project_keuangan/index.php?alert=daftar");
 
-    header("location:https://financemci.soalberganda.com/index.php?alert=daftar");
+    //header("location:https://financemci.soalberganda.com/index.php?alert=daftar");
 }
 // if (isset($_POST['addregis'])) {
 //     $nama = $_POST['nama'];

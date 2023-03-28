@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Administrator - Sistem Informasi Financial Planner</title>
+  <title>Administrator - Sistem Informasi Koperasi MCI</title>
 
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="../assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -52,7 +52,7 @@
       </a>
       <nav class="navbar navbar-static-top">
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-          <span class="sr-only">Toggle navigation</span>
+          <span class="logo-lg"><b>Koperasi MCI </b>App</span>
         </a>
 
         <div class="navbar-custom-menu">
@@ -91,7 +91,7 @@
             $profil = mysqli_fetch_assoc($profil);
             if ($profil['user_foto'] == "") {
             ?>
-              <img src="../gambar/sistem/user.png" class="img-circle">
+              <img src="../gambar/sistem/user2.png" class="img-circle">
             <?php } else { ?>
               <img src="../gambar/user/<?php echo $profil['user_foto'] ?>" class="img-circle" style="max-height:45px">
             <?php } ?>
@@ -111,55 +111,45 @@
             </a>
           </li>
 
+
           <li>
-            <a href="kategori.php">
-              <i class="fa fa-folder"></i> <span>KATEGORI TRANSAKSI</span>
+            <a href="anggota.php">
+              <i class="fa fa-user"></i> <span>DATA ANGGOTA</span>
             </a>
           </li>
 
           <li>
-            <a href="transaksi.php">
-              <i class="fa fa-folder"></i> <span>DATA TRANSAKSI</span>
+            <a href="tabungan.php">
+              <i class="fa fa-bitcoin"></i> <span>TABUNGAN</span>
+            </a>
+          </li>
+
+
+
+          <li>
+            <a href="simpanan.php">
+              <i class="fa fa-save"></i> <span>SIMPANAN</span>
+            </a>
+          </li>
+
+
+          <li>
+            <a href="pinjaman.php">
+              <i class="fa fa-book"></i> <span>PINJAMAN</span>
+            </a>
+          </li>
+
+
+          <li>
+            <a href="angsuran.php">
+              <i class="fa fa-money"></i> <span>ANGSURAN</span>
             </a>
           </li>
 
 
           <li>
             <a href="laporan.php">
-              <i class="fa fa-file"></i> <span>REKAP TRANSAKSI</span>
-            </a>
-          </li>
-
-
-          <li>
-            <a href="datapensiun.php">
-              <i class="fa fa-folder"></i> <span>DATA PENSIUN</span>
-            </a>
-          </li>
-
-
-          <li>
-
-          <li>
-            <a href="pensiun.php">
-              <i class="fa fa-calculator"></i> <span>SIMULASI <br> PERHITUNGAN PENSIUN </br></span>
-            </a>
-          </li>
-
-
-
-
-          <li>
-            <a href="dataanak.php">
-              <i class="fa fa-folder"></i> <span>DATA ANAK</span>
-            </a>
-          </li>
-
-
-
-          <li>
-            <a href="anak.php">
-              <i class="fa fa-calculator"></i> <span>SIMULASI <br> PERHITUNGAN PERENCANAAN <br> PENDIDIKAN ANAK </br></span>
+              <i class="fa fa-file"></i> <span>REKAP TRANSAKSI LAPORAN</span>
             </a>
           </li>
 

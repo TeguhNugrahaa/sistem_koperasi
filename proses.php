@@ -1,5 +1,3 @@
-
-
 <?php
 
 include 'koneksi.php';
@@ -30,5 +28,3 @@ if (isset($_POST['addregis'])) {
 // } else {
 //     echo "S";
 // }
-
-?>

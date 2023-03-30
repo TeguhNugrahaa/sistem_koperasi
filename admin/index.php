@@ -48,10 +48,10 @@
               <div class="inner">
                 <?php
                 $tanggal = date('Y-m-d');
-                $simpanan = mysqli_query($koneksi, "SELECT sum(besar_simpanan) as kode_anggota FROM simpanan WHERE jenis_simpanan='Pokok' and tanggal_masuk='$tanggal'");
+                $simpanan = mysqli_query($koneksi, "SELECT sum(besar_simpanan) as kode_simpanan FROM simpanan WHERE jenis_simpanan='Pokok' , 'Wajib', 'Sukarela'  and tanggal_masuk='$tanggal'");
                 $s = mysqli_fetch_assoc($simpanan);
                 ?>
-                <h4 style="font-weight: bolder"><?php echo "Rp. " . number_format($s['kode_anggota']) . " ,-" ?></h4>
+                <h4 style="font-weight: bolder"><?php echo "Rp. " . number_format($s['besar_simpanan']) . " ,-" ?></h4>
                 <p>Anggota</p>
               </div>
               <div class="icon">

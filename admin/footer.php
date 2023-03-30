@@ -218,6 +218,138 @@
 
 
 
+
+    // Ini untuk Masukan Jenis Simpanan
+
+    var barChartData = {
+      labels: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"],
+      datasets: [{
+          label: 'Pokok',
+          fillColor: "rgba(51, 240, 113, 0.61)",
+          strokeColor: "rgba(11, 246, 88, 0.61)",
+          highlightFill: "rgba(220,220,220,0.75)",
+          highlightStroke: "rgba(220,220,220,1)",
+          data: [
+            <?php
+            for ($bulan = 1; $bulan <= 12; $bulan++) {
+              $thn_ini = date('Y');
+              $pokok = mysqli_query($koneksi, "select sum(kode_simpanan) as besar_simpanan from simpanan where jenis_simpanan='Pokok' and month(tanggal_masuk)='$bulan' and year(tanggal_masuk)='$thn_ini'");
+              $pok = mysqli_fetch_assoc($pokok);
+
+              // $total = str_replace(",", "44", number_format($pem['total_pemasukan']));
+              $total = $pok['besar_simpanan'];
+              if ($pok['besar_simpanan'] == "") {
+                echo "0,";
+              } else {
+                echo $total . ",";
+              }
+            }
+            ?>
+          ]
+        },
+        {
+          label: 'Wajib',
+          fillColor: "rgba(255, 51, 51, 0.8)",
+          strokeColor: "rgba(248, 5, 5, 0.8)",
+          highlightFill: "rgba(151,187,205,0.75)",
+          highlightStroke: "rgba(151,187,205,1)",
+          data: [
+            <?php
+            for ($bulan = 1; $bulan <= 12; $bulan++) {
+              $thn_ini = date('Y');
+              $wajib = mysqli_query($koneksi, "select sum(kode_simpanan) as besar_simpanan from simpanan where jenis_simpanan='Wajib' and month(tanggal_masuk)='$bulan' and year(tanggal_masuk)='$thn_ini'");
+              $wa = mysqli_fetch_assoc($wajib);
+
+
+              // $total = str_replace(",", "44", number_format($peng['total_pengeluaran']));
+              $total = $waj['besar_simpanan'];
+              if ($peng['besar_simpanan'] == "") {
+                echo "0,";
+              } else {
+
+                echo $total . ",";
+              }
+            }
+            ?>
+          ]
+        },
+
+      ]
+
+    }
+
+    var barChartData2 = {
+      labels: [
+        <?php
+        $tahun = mysqli_query($koneksi, "select distinct year(tanggal_masuk) as tahun from simpanan order by year(tanggal_masuk) asc");
+        while ($t = mysqli_fetch_array($tahun)) {
+        ?> "<?php echo $t['tahun']; ?>",
+        <?php
+        }
+        ?>
+      ],
+      datasets: [{
+          label: 'Pokok',
+          fillColor: "rgba(51, 240, 113, 0.61)",
+          strokeColor: "rgba(11, 246, 88, 0.61)",
+          highlightFill: "rgba(220,220,220,0.75)",
+          highlightStroke: "rgba(220,220,220,1)",
+          data: [
+            <?php
+            $tahun = mysqli_query($koneksi, "select distinct year(tanggal_masuk) as tahun from simpanan order by year(transaksi_tanggal) asc");
+            while ($t = mysqli_fetch_array($tahun)) {
+              $thn = $t['tahun'];
+              $pokok = mysqli_query($koneksi, "select sum(tanggal_masuk) as besar_simpanan from simpanan where jenis_simpanan='Pokok' and year(tanggal_masuk)='$thn'");
+              $pok = mysqli_fetch_assoc($pokok);
+              $total = $pem['besar_simpanan'];
+              if ($pok['besar_simpanan'] == "") {
+                echo "0,";
+              } else {
+                echo $total . ",";
+              }
+            }
+            ?>
+          ]
+        },
+        {
+          label: 'Wajib',
+          fillColor: "rgba(255, 51, 51, 0.8)",
+          strokeColor: "rgba(248, 5, 5, 0.8)",
+          highlightFill: "rgba(151,187,205,0.75)",
+          highlightStroke: "rgba(254, 29, 29, 0)",
+          data: [
+            <?php
+            $tahun = mysqli_query($koneksi, "select distinct year(tanggal_masuk) as tahun from simpanan order by year(transaksi_tanggal) asc");
+            while ($t = mysqli_fetch_array($tahun)) {
+              $thn = $t['tahun'];
+              $wajib = mysqli_query($koneksi, "select sum(tanggal_masuk) as besar_simpanan from simpanan where jenis_simpanan='Wajib' and year(tanggal_masuk)='$thn'");
+              $wa = mysqli_fetch_assoc($wajib);
+              $total = $pem['besar_simpanan'];
+              if ($wa['besar_simpanan'] == "") {
+                echo "0,";
+              } else {
+                echo $total . ",";
+              }
+            }
+            ?>
+          ]
+        },
+
+      ]
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     window.onload = function() {
       var ctx = document.getElementById("grafik1").getContext("2d");
       window.myBar = new Chart(ctx).Bar(barChartData, {

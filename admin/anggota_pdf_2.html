@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en-us" >
+	<head>
+		<meta charset="utf-8">
+		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+
+		<title> Sistem Informasi Koperasi MCI</title>
+		
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+<script
+  src="https://code.jquery.com/jquery-3.6.4.min.js"
+  integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+
+<style>
+#printDiv {padding:30px;width:100px;}
+#pdfDownloader{margin:20px 0 0 20px}
+</style>
+</head>
+	<body id="nonav" class="no-menu" >
+	    
+<button type="button"  class="btn btn-primary" id="pdfDownloader">Download PDF</button>
+
+<div id="printDiv" class="container">
+  
+  <h2>Data Anggota Koperasi</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nama Lengkap</th>
+        <th>Alamat</th>
+        <th>Tempat Lahir</th>
+        <th>Tanggal Lahir</th>
+        <th>No. Handphone</th>
+        <th>Email</th>
+        <th>Pekerjaan</th>
+        <th>Jumlah tanggungan saat ini</th>
+        <th>Foto KTP</th>
+        <th>Foto NPWP</th>
+        <th>Upload Bukti Pembayaran</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Nugrah</td>
+        <td>Tangerang</td>
+        <td>Serang</td>
+        <td>2023-03-26</td>
+        <td>08131252728282</td>
+        <td>nugraha@gmail.com</td>
+        <td>Staff IT</td>
+        <td>3 Orang</td>
+        <td><img src="data:image/png;base64, ../gambar/user/upload_ktp/" height="50px"></td>
+        <td><img src="data:image/png;base64, ../gambar/user/upload_npwp/" height="50px"></td>
+        <td><img src="data:image/png;base64, ../gambar/user/upload_bukti/" height="50px"></td>
+
+      </tr>
+      <tr> 
+        <td>Gunawan Supriyanto</td>
+        <td>Matraman</td>
+        <td>Serang</td>
+        <td>2023-03-27</td>
+        <td>0215919244</td>
+        <td>supriyanto@gmail.com</td>
+        <td>Karyawan</td>
+        <td>3 Orang</td>
+        <td><img src="../gambar/user/upload_ktp/" height="50px"></td>
+        <td><img src="../gambar/user/upload_npwp/" height="50px"></td>
+        <td><img src="../gambar/user/upload_bukti/" height="50px"></td>
+      </tr>
+      <tr>
+        <td>Jhon</td>
+        <td>Tangerang</td>
+        <td>Serang</td>
+        <td>2023-03-27</td>
+        <td>08131252728282</td>
+        <td>hisar@gmail.com</td>
+        <td>Staff IT</td>
+        <td>3 Orang</td>
+        <td><img src="../gambar/user/upload_ktp/" height="50px"></td>
+        <td><img src="../gambar/user/upload_npwp/" height="50px"></td>
+        <td><img src="../gambar/user/upload_bukti/" height="50px"></td>
+      </tr>
+
+      <tr>
+        <td>Ferdiando</td>
+        <td>Matraman</td>
+        <td>Serang</td>
+        <td>2023-03-27</td>
+        <td>08131252728283</td>
+        <td>ferdiando@gmail.com</td>
+        <td>Karyawan</td>
+        <td>2 Orang</td>
+        <td><img src="../gambar/user/upload_ktp/" height="50px"></td>
+        <td><img src="../gambar/user/upload_npwp/" height="50px"></td>
+        <td><img src="../gambar/user/upload_bukti/" height="50px"></td>
+      </tr>
+      <tr>
+      <td>Rizal</td>
+      <td>Bekasi</td>
+      <td>Bekasi</td>
+      <td>2023-03-21</td>
+      <td>08131252728283</td>
+      <td>rizal@gmail.com</td>
+      <td>Staff IT</td>
+      <td>3 Orang</td>
+      <td><img src="../gambar/user/upload_ktp/" height="50px"></td>
+      <td><img src="../gambar/user/upload_npwp/" height="50px"></td>
+      <td><img src="../gambar/user/upload_bukti/" height="50px"></td>
+    </tr>
+    <tr>
+        <td>Benni Suprianto</td>
+        <td>Matraman</td>
+        <td>Serang</td>
+        <td>2023-03-13</td>
+        <td>0215919244</td>
+        <td>beni@gmail.com</td>
+        <td>marketing</td>
+        <td>3 Orang</td>
+        <td><img src="../gambar/user/upload_ktp/" height="50px"></td>
+        <td><img src="../gambar/user/upload_npwp/" height="50px"></td>
+        <td><img src="../gambar/user/upload_bukti/" height="50px"></td>
+      </tr>
+      <tr>
+        <td>Ahmad</td>
+        <td>Matraman</td>
+        <td>Serang</td>
+        <td>2023-03-27</td>
+        <td>0215919244</td>
+        <td>ahmad@gmail.com</td>
+        <td>Karyawan</td>
+        <td>3 Orang</td>
+        <td><img src="../gambar/user/upload_ktp/" height="50px"></td>
+        <td><img src="../gambar/user/upload_npwp/" height="50px"></td>
+        <td><img src="../gambar/user/upload_bukti/" height="50px"></td>
+      </tr>
+    </tbody>
+  </table>
+  
+</div>
+<script>
+$(document).ready(function(){
+
+
+	$("#pdfDownloader").click(function(){
+	
+        html2canvas(document.getElementById("printDiv"), {
+            onrendered: function(canvas) {
+
+                var imgData = canvas.toDataURL('image/png');
+                console.log('Report Image URL: '+imgData);
+                //var doc = new jsPDF('p', 'mm', [297, 210]); //210mm wide and 297mm high
+                var doc = new jsPDF('L', 'mm', [210, 297]); 
+                doc.addImage(imgData, 'PNG', 10, 10);
+                doc.save('sample.pdf');
+            }
+        });
+
+	});
+	
+	
+})
+</script>

@@ -41,7 +41,7 @@ foreach ($data as $item) {
 $html .= '</tbody></table>';
 // Menambahkan HTML ke dalam objek Dompdf
 $dompdf->loadHtml($html);
-                        var_dump($html);die;
+                        //var_dump($html);die;
 
 // Konfigurasi opsi Dompdf
 $dompdf->setPaper('A4', 'landscape');
@@ -50,6 +50,9 @@ $dompdf->set_option('isRemoteEnabled', true);
 // Render dokumen PDF dan simpan dalam bentuk file
 $dompdf->render();
 $output = $dompdf->output();
-$dompdf->stream();
-file_put_contents('daftar_produk.pdf', $output);
+$name = "anggota_koperasi";
+$dompdf->stream($name . ".pdf");
+
+// Untuk yang ini dihilangkan saja
+//file_put_contents('daftar_produk.pdf', $output);
 ?>

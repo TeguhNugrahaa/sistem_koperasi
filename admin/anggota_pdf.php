@@ -1,59 +1,59 @@
 <?php
-// memanggil library FPDF
-require('../library/fpdf181/fpdf.php');
+
 include '../koneksi.php';
-
-// intance object dan memberikan pengaturan halaman PDF
-$pdf = new FPDF('L', 'mm', 'A4');
-$pdf->AddPage();
-
-$pdf->SetFont('Times', 'B', 13);
-
-$pdf->Cell(280, 7, 'Data Koperasi Anggota', 0, 0, 'C');
-
-$pdf->Cell(10, 15, '', 0, 1);
-$pdf->SetFont('Times', 'B', 13);
-
-$pdf->Cell(10, 7, "NO", 1, 0, 'C');
-$pdf->Cell(40, 7, "NAMA", 1, 0, 'C');
-$pdf->Cell(40, 7, "ALAMAT", 1, 0, 'C');
-$pdf->Cell(40, 7, "TEMPAT\r\n\LAHIR", 1, 0, 'C');
-//$pdf->Cell(40, 7, 'TEMPAT LAHIR', 1, 0, 'C');
-$pdf->Cell(40, 7, "TANGGAL\r\n\LAHIR", 1, 0, 'C');
-//$pdf->Cell(50, 7, 'TANGGAL LAHIR', 1, 0, 'C');
-$pdf->Cell(40, 7, "NO\r\n\HP", 1, 0, 'C');
-//$pdf->Cell(50, 7, 'NO HP', 1, 0, 'C');
-$pdf->Cell(40, 7, "EMAIL", 1, 0, 'C');
-$pdf->Cell(40, 7, "PEKERJAAN", 1, 0, 'C');
-$pdf->Cell(40, 7, "JUMLAH\r\n\TANGGUNGAN", 1, 0, 'C');
-//$pdf->Cell(50, 7, 'JUMLAH TANGGUNGAN', 1, 0, 'C');
-$pdf->Cell(40, 7, "FOTO\r\n\KTP", 1, 0, 'C');
-//$pdf->Cell(50, 7, 'FOTO KTP', 0, 0, 'C');
-$pdf->Cell(40, 7, "FOTO\r\n\NPWP", 1, 0, 'C');
-//$pdf->Cell(50, 7, 'FOTO NPWP', 0, 0, 'C');
-$pdf->Cell(40, 7, "BUKTI\r\n\PEMBAYARAN", 1, 0, 'C');
-//$pdf->Cell(50, 7, 'BUKTI PEMBAYARAN', 0, 0, 'C');
-
-
-
-
-$pdf->Cell(10, 7, '', 0, 1);
-
-$no = 1;
-$data = mysqli_query($koneksi, "SELECT  * FROM anggota");
-while ($d = mysqli_fetch_array($data)) {
-    $pdf->Cell(10, 7, $no++, 1, 0, 'C');
-    $pdf->Cell(40, 7, $d['anggota_nama'], 1, 0,);
-    $pdf->Cell(40, 7, $d['anggota_alamat'], 1, 0,);
-    $pdf->Cell(40, 7, $d['anggota_tempat'], 1, 0,);
-    $pdf->Cell(40, 7, $d['anggota_tanggal'], 1, 0,);
-    $pdf->Cell(40, 7, $d['anggota_handphone'], 1, 0,);
-    $pdf->Cell(40, 7, $d['anggota_email'], 1, 0,);
-    $pdf->Cell(40, 7, $d['anggota_pekerjaan'], 1, 0,);
-    $pdf->Cell(40, 7, $d['anggota_tanggungan'], 1, 0,);
-    $pdf->Cell(40, 7, $d['anggota_ktp'], 1, 0,);
-    $pdf->Cell(40, 7, $d['anggota_npwp'], 1, 0,);
-    $pdf->Cell(40, 7, $d['anggota_bukti'], 1, 0,);
+// Menyiapkan data dari database
+$query = mysqli_query($koneksi, "SELECT * FROM anggota");
+$data = array();
+while ($row = mysqli_fetch_assoc($query)) {
+    $data[] = $row;
 }
+$baseUrl = 'http://localhost/belajarkoperasi/';
 
-$pdf->Output();
+
+// Membuat objek Dompdf
+require_once '../library/dompdf/autoload.inc.php';
+
+use Dompdf\Dompdf;
+
+$dompdf = new Dompdf();
+
+$html = '<table border="1" style="border-collapse: collapse; width: 100%;">';
+$html .= '<thead><tr><th>No</th></th><th>Nama Lengkap</th><th>Alamat</th><th>Tempat Lahir</th> <th>Tanggal Lahir</th><th>No Handphone</th><th>Email</th><th>Pekerjaan</th><th>Jumlah Tanggungan</th><th>KTP</th><th>NPWP</th><th>Bukti Bayar</th></tr></thead>';
+$html .= '<tbody>';
+foreach ($data as $item) {
+    $npwp = $baseUrl . 'gambar/user/upload_npwp/' . $item['anggota_npwp'];
+    $ktp = $baseUrl . 'gambar/user/upload_ktp/' . $item['anggota_ktp'];
+    $bukti = $baseUrl . 'gambar/user/upload_bukti/' . $item['anggota_bukti'];
+    $html .= '<tr>';
+    $html .= '<td style="padding-bottom:50px;padding-left:5px;">' . $item['anggota_id'] . '</td>';
+    $html .= '<td style="padding-bottom:50px;padding-left:5px;">' . $item['anggota_nama'] . '</td>';
+    $html .= '<td style="padding-bottom:50px;padding-left:5px;">' . $item['anggota_alamat'] . '</td>';
+    $html .= '<td style="padding-bottom:50px;padding-left:5px;">' . $item['anggota_tempat'] . '</td>';
+    $html .= '<td style="padding-bottom:50px;padding-left:5px;">' . $item['anggota_tanggal'] . '</td>';
+    $html .= '<td style="padding-bottom:50px;padding-left:5px;">' . $item['anggota_handphone'] . '</td>';
+    $html .= '<td style="padding-bottom:50px;padding-left:5px;">' . $item['anggota_email'] . '</td>';
+    $html .= '<td style="padding-bottom:50px;padding-left:5px;">' . $item['anggota_pekerjaan'] . '</td>';
+    $html .= '<td style="padding-bottom:50px;padding-left:5px;">' . $item['anggota_tanggungan'] . '</td>';
+    $html .= '<td><img src="' . $ktp . '" width="50"></td>';
+    $html .= '<td><img src="' . $npwp . '" width="50"></td>';
+    $html .= '<td><img src="' . $bukti . '" width="50"></td>';
+    $html .= '</tr>';
+}
+$html .= '</tbody></table>';
+// Menambahkan HTML ke dalam objek Dompdf
+$dompdf->loadHtml($html);
+//var_dump($html);
+//die;
+
+// Konfigurasi opsi Dompdf
+$dompdf->setPaper('A4', 'landscape');
+$dompdf->set_option('isRemoteEnabled', true);
+
+// Render dokumen PDF dan simpan dalam bentuk file
+$dompdf->render();
+$output = $dompdf->output();
+$name = "anggota_koperasi";
+$dompdf->stream($name . ".pdf");
+
+// untuk yang ini dihilangkan saja
+//file_put_contents('anggotakoperasi.pdf', $output);

@@ -91,6 +91,7 @@
                             </div>
                         </form>
 
+                        <a href="tabungan_pdf.php?>" target="_blank" class="btn btn-sm btn-success"><i class="fa fa-file-pdf-o"></i> &nbsp CETAK PDF</a>
                         <a href="tabungan-excel-backup.php?>" target="_blank" class="btn btn-sm btn-success"><i class="fa fa-file-excel-o"></i> &nbsp CETAK EXCEL</a>
                         <a href="tabungan_print.php" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> &nbsp PRINT</a>
                         <div class="table-responsive">
